@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nishant Choudhary | ML Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">Nishant Choudhary</div>
+  <ul class="nav-links">
+    <li><a href="#hero" class="nav-link">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#skills" class="nav-link">Skills</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <button id="theme-toggle">🌙</button>
+</nav>
+
+<section id="hero" class="reveal">
+  <h1>Machine Learning Engineer</h1>
+  <p>Building explainable, deployable ML systems.</p>
+  <a href="#projects" class="btn-primary">View Projects</a>
+</section>
+
+<section id="about" class="reveal">
+  <h2>About Me</h2>
+  <p>
+    I build end-to-end ML systems with a strong focus on explainability,
+    uncertainty awareness, and real-world deployment.
+  </p>
+</section>
+
+<section id="projects" class="reveal">
+  <h2>Featured Projects</h2>
+
+  <!-- Project 1 -->
+  <div class="project-card">
+    <img src="assets/demo.gif" alt="Crop Disease Detection Demo">
+    <div>
+      <h3>Crop Disease Detection with Explainable AI</h3>
+      <p class="tech">PyTorch · Grad-CAM · Computer Vision · Streamlit</p>
+      <p>ResNet18-based classifier for 38 crop disease classes with visual explanations.</p>
+      <div class="project-buttons">
+        <button class="btn-secondary" onclick="openModal('xaiModal')">View Details</button>
+        <a href="https://github.com/Nishant8677/crop-disease-detection-xai" target="_blank">GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="project-card reverse">
+    <img src="assets/fakenews.png" alt="Fake News Detection">
+    <div>
+      <h3>Fake News Detection using BERT</h3>
+      <p class="tech">Transformers · NLP · PyTorch</p>
+      <p>BERT-based fake news classification and political fact checking.</p>
+      <div class="project-buttons">
+        <button class="btn-secondary" onclick="openModal('bertModal')">View Details</button>
+        <a href="https://github.com/Nishant8677/fake-news-detection-bert" target="_blank">GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section id="skills" class="reveal">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div>Python</div><div>PyTorch</div><div>TensorFlow</div>
+    <div>Computer Vision</div><div>NLP</div><div>Explainable AI</div>
+    <div>Streamlit</div><div>Scikit-learn</div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <h2>Contact</h2>
+  <p>
+    📧 <a href="mailto:nishantchoudhary8677@gmail.com">Email</a><br>
+    💼 <a href="https://www.linkedin.com/in/nishant-choudhary-7a0a97282" target="_blank">LinkedIn</a><br>
+    🧑‍💻 <a href="https://github.com/Nishant8677" target="_blank">GitHub</a>
+  </p>
+</section>
+
+<footer>
+  © 2026 Nishant Choudhary
+</footer>
+
+<!-- MODALS -->
+
+<div class="modal" id="xaiModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('xaiModal')">&times;</span>
+    <h2>Crop Disease Detection with Explainable AI</h2>
+    <p><b>Problem:</b> CNN predictions lack trust in agriculture.</p>
+    <ul>
+      <li>38-class classification using ResNet18</li>
+      <li>Transfer learning with PyTorch</li>
+      <li>Grad-CAM explainability via hooks</li>
+      <li>Confidence-aware Streamlit UI</li>
+    </ul>
+    <p><b>Key Learning:</b> Interpretability is critical for real-world adoption.</p>
+  </div>
+</div>
+
+<div class="modal" id="bertModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('bertModal')">&times;</span>
+    <h2>Fake News Detection using BERT</h2>
+    <ul>
+      <li>BERT fine-tuning for fake vs real news</li>
+      <li>Extended to political fact-checking (LIAR)</li>
+      <li>3-class reformulation to reduce ambiguity</li>
+    </ul>
+    <p><b>Key Learning:</b> Label ambiguity limits achievable accuracy.</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
