@@ -40,6 +40,7 @@
         <div class="about-content reveal">
             <div class="about-text">
                 <h3>About Me</h3>
+                <p>I am a B.Tech student in Electronics & Computer Engineering at VIT Chennai (Class of 2027), with a CGPA of 8.32/10.</p>
                 <p>I build end-to-end machine learning systems with a strong focus on explainability, uncertainty awareness, and real-world deployment.</p>
                 <p>My interests span computer vision, transformer-based NLP, and applied ML engineering.</p>
                 <div class="focus-statement">
@@ -77,13 +78,15 @@
         <p class="section-subtitle reveal">Tools and frameworks I work with</p>
         <div class="skills-grid">
             <div class="skill-card reveal">
-                <h3>Programming</h3>
+                <h3>Programming & Fundamentals</h3>
                 <div class="skill-tags">
                     <span class="tag">Python</span>
                     <span class="tag">C++</span>
-                    <span class="tag">SQL (MySQL)</span>
+                    <span class="tag">SQL</span>
                     <span class="tag">DSA</span>
+                    <span class="tag">OOP</span>
                     <span class="tag">Linux</span>
+                    <span class="tag">REST APIs</span>
                 </div>
             </div>
             <div class="skill-card reveal">
@@ -120,6 +123,7 @@
                     <span class="tag">Pandas</span>
                     <span class="tag">NumPy</span>
                     <span class="tag">Matplotlib</span>
+                    <span class="tag">Plotly</span>
                 </div>
             </div>
             <div class="skill-card reveal">
@@ -130,6 +134,16 @@
                     <span class="tag">Docker</span>
                     <span class="tag">AWS EC2</span>
                     <span class="tag">GitHub Actions</span>
+                    <span class="tag">pytest</span>
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <h3>Databases</h3>
+                <div class="skill-tags">
+                    <span class="tag">MySQL</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">ETL</span>
+                    <span class="tag">Schema Design</span>
                 </div>
             </div>
         </div>
@@ -198,10 +212,10 @@
                     <h3>Fake News Detection API (BERT)</h3>
                     <p class="subtitle">Fine-tuned BERT on the LIAR dataset for real-world fake news classification.</p>
                     <ul>
-                        <li>Achieved a macro F1-score of 47%</li>
                         <li>End-to-end ML pipeline for training and inference</li>
-                        <li>FastAPI REST endpoint with threshold predictions</li>
-                        <li>Containerized via Docker for 120 req/sec</li>
+                        <li>FastAPI REST service for 6-class claim classification</li>
+                        <li>Containerized with Docker; serving at 8.5ms avg latency</li>
+                        <li>Benchmarked at 396 req/sec batch throughput</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
                         <strong>Tech:</strong> Docker, FastAPI, HuggingFace, BERT
@@ -213,25 +227,25 @@
             </div>
 
             <div class="project-card reveal">
-                <div class="project-image">🌾</div>
+                <div class="project-image">📊</div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="tag">Deep Learning</span>
-                        <span class="tag">Explainable AI</span>
+                        <span class="tag">Data Engineering</span>
+                        <span class="tag">Data Analytics</span>
                     </div>
-                    <h3>Crop Disease Detection with XAI</h3>
-                    <p class="subtitle">ResNet18-based system to classify 38 plant disease classes with visual explanations.</p>
+                    <h3>Government Budget Analytics Platform</h3>
+                    <p class="subtitle">Designed a normalized MySQL schema and an ETL pipeline for multi-year government tax revenue data.</p>
                     <ul>
-                        <li>Transfer learning with ResNet18</li>
-                        <li>96% validation accuracy across 54,305 images</li>
-                        <li>Grad-CAM explainability for interpretability</li>
-                        <li>Systematic misclassification analysis</li>
+                        <li>Normalized 6-table MySQL schema with SQL views</li>
+                        <li>Transaction-safe ETL pipeline with idempotent upserts</li>
+                        <li>Optimized analytical queries, cutting JOIN latency by ~83%</li>
+                        <li>Streamlit dashboard with a SQL query explorer</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
-                        <strong>Tech:</strong> PyTorch, ResNet18, Grad-CAM, OpenCV
+                        <strong>Tech:</strong> Python, MySQL, SQL, Streamlit, ETL, Plotly
                     </p>
                     <div class="project-links">
-                        <a href="https://github.com/Nishant8677/crop-disease-detection-xai" target="_blank">View on GitHub →</a>
+                        <a href="https://github.com/Nishant8677/Government-Budget-Analytics" target="_blank">View on GitHub →</a>
                     </div>
                 </div>
             </div>
