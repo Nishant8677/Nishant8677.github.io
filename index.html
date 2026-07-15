@@ -164,9 +164,9 @@
                     <h3>ClickTutor AI – Intelligent Screen Tutor</h3>
                     <p class="subtitle">Built a transparent desktop overlay for rendering AI-generated annotations directly over any application.</p>
                     <ul>
-                        <li>MVC architecture for modular OCR and rendering</li>
+                        <li>100% OCR localization accuracy across 116 benchmark test samples</li>
+                        <li>Sub-10ms overlay rendering latency (~800ms total pipeline)</li>
                         <li>OCR-based anchor matching with duplicate resolution</li>
-                        <li>Sub-15ms frame processing latency</li>
                         <li>Adaptive Gemini Vision explanations</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
@@ -188,10 +188,10 @@
                     <h3>FocusLens – Real-Time Focus Monitoring</h3>
                     <p class="subtitle">Extracted 478 facial landmarks per frame for real-time focus inference with zero dropped frames.</p>
                     <ul>
+                        <li>97.67% accuracy, 98.82% F1, and 100% recall on held-out evaluation data</li>
+                        <li>78.28 ms end-to-end prediction latency (2.65 ms feature extraction latency)</li>
+                        <li>54.17 FPS face-detection throughput with zero dropped frames</li>
                         <li>Random Forest and LSTM temporal models</li>
-                        <li>92% validation accuracy on focus labels</li>
-                        <li>Engineered EAR, PERCLOS, and head pose features</li>
-                        <li>Personalised 2-minute calibration dashboard</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
                         <strong>Tech:</strong> Python, MediaPipe, Random Forest, LSTM, Streamlit
@@ -212,10 +212,10 @@
                     <h3>Fake News Detection API (BERT)</h3>
                     <p class="subtitle">Fine-tuned BERT on the LIAR dataset for real-world fake news classification.</p>
                     <ul>
-                        <li>End-to-end ML pipeline for training and inference</li>
                         <li>FastAPI REST service for 6-class claim classification</li>
-                        <li>Containerized with Docker; serving at 8.5ms avg latency</li>
-                        <li>Benchmarked at 396 req/sec batch throughput</li>
+                        <li>8.5 ms avg / 12.8 ms P95 latency with 396 req/sec throughput</li>
+                        <li>0.67 s model load time with a 418 MB memory footprint</li>
+                        <li>Containerized end-to-end ML pipeline for training and inference</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
                         <strong>Tech:</strong> Docker, FastAPI, HuggingFace, BERT
@@ -238,8 +238,8 @@
                     <ul>
                         <li>Normalized 6-table MySQL schema with SQL views</li>
                         <li>Transaction-safe ETL pipeline with idempotent upserts</li>
-                        <li>Optimized analytical queries, cutting JOIN latency by ~83%</li>
-                        <li>Streamlit dashboard with a SQL query explorer</li>
+                        <li>Optimized 1M-row scale queries, cutting JOIN latency by ~83% (2066 ms → 350 ms)</li>
+                        <li>Streamlit dashboard with ~91% faster response times (420 ms → 38 ms)</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
                         <strong>Tech:</strong> Python, MySQL, SQL, Streamlit, ETL, Plotly
