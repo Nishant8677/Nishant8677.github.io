@@ -220,20 +220,22 @@
                         <span class="tag">GenAI</span>
                     </div>
                     <h3>ClickTutor AI – Intelligent Screen Tutor</h3>
-                    <p class="subtitle">Built a transparent desktop overlay for rendering AI-generated annotations directly over any application.</p>
+                    <p class="subtitle">A desktop overlay that answers a question about your screen and highlights what it's describing.</p>
                     <p class="case-study" style="background: rgba(255,255,255,0.03); padding: 1rem; border-left: 3px solid var(--accent); margin: 1rem 0; font-size: 0.9rem; color: var(--text-secondary);">
-                        <strong>Case Study:</strong> Architected an MVC pattern to decouple OCR extraction from UI rendering, ensuring a sub-10ms rendering pipeline. On the AI side, engineered a multi-pass OCR matching strategy with adaptive Gemini Vision explanations to resolve duplicate anchors and guarantee context-aware accuracy.
+                        <strong>Case Study:</strong> Anchor localization failed on 21% of steps. Prompt-grounding moved it only 79% → 82% — within noise at n=33 — so I built a bounded repair loop instead. Then the harder finding: that metric measured whether a lookup <em>resolved</em>, not whether the highlight was <em>right</em>. Nine boxes sat confidently on the wrong words and scored as successes.
                     </p>
                     <ul>
-                        <li>100% OCR localization accuracy across 116 benchmark test samples</li>
-                        <li>Sub-10ms overlay rendering latency (~800ms total pipeline)</li>
-                        <li>OCR-based anchor matching with duplicate resolution</li>
-                        <li>Adaptive Gemini Vision explanations</li>
+                        <li>33/33 anchors located across an 8-screen benchmark corpus</li>
+                        <li>Which match pass fired predicts correctness exactly — phrase-level 40/0, word-level 0/9 — so I routed on a signal the locator already had</li>
+                        <li>Validated 25/26 on 7 held-out screens shot after the rule was committed</li>
+                        <li>OCR beats a vision model 97% to 76% on readable screens; the vision model wins 96% to 29% on screens OCR cannot read — so the fix was routing, not replacement</li>
+                        <li>9.73 s end-to-end, 99% of it in OCR and the LLM call, against 15 ms of application logic</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
-                        <strong>Tech:</strong> Python, PyQt6, Gemini Vision, PyTesseract, OpenCV
+                        <strong>Tech:</strong> Python, PyQt6, Gemini API, PyTesseract, OpenCV
                     </p>
                     <div class="project-links">
+                        <a href="https://github.com/Nishant8677/ClickTutor_AI/blob/main/docs/anchor-repair.md" target="_blank" rel="noopener">Read the writeup →</a>
                         <a href="https://github.com/Nishant8677/ClickTutor_AI" target="_blank">View on GitHub →</a>
                     </div>
                 </div>
@@ -247,18 +249,19 @@
                         <span class="tag">Data Engineering</span>
                     </div>
                     <h3>Government Budget Analytics Platform</h3>
-                    <p class="subtitle">Designed a normalized MySQL schema and an ETL pipeline for multi-year government tax revenue data.</p>
+                    <p class="subtitle">A MySQL performance investigation and analytics dashboard. 922K rows, of which 921.5K synthetic.</p>
                     <p class="case-study" style="background: rgba(255,255,255,0.03); padding: 1rem; border-left: 3px solid var(--accent); margin: 1rem 0; font-size: 0.9rem; color: var(--text-secondary);">
-                        <strong>Case Study:</strong> Designed a heavily optimized, normalized MySQL schema with indexed relationships to cut JOIN latency by ~83% on 1M-row scale datasets. This backend architecture directly enabled the Streamlit frontend to deliver highly responsive (~38 ms) exploratory analytics.
+                        <strong>Case Study:</strong> I predicted a covering index would cut JOIN latency. Measured, it delivered <strong>0.8%</strong> — inside run-to-run noise. The real constraint was elsewhere, and it came from query plans rather than wall-clock: MySQL will not push a disjunctive predicate into a <code>GROUP BY</code> view, so <code>IN</code>/<code>OR</code> materialise 201,714 rows where a <code>UNION ALL</code> of equalities materialises 80. Negative result published with the method and the standard deviations.
                     </p>
                     <ul>
-                        <li>Normalized 6-table MySQL schema with SQL views</li>
-                        <li>Transaction-safe ETL pipeline with idempotent upserts</li>
-                        <li>Optimized 1M-row scale queries, cutting JOIN latency by ~83% (2066 ms → 350 ms)</li>
-                        <li>Streamlit dashboard with ~91% faster response times (420 ms → 38 ms)</li>
+                        <li>Default page load cut from 3m37s to 30s (7.2×) by profiling what the application actually issued</li>
+                        <li>99.5% of that time sat in two queries that no index could reach</li>
+                        <li>The covering index the documentation credits with 80–85% measured at 0.8%</li>
+                        <li>Buffer-pool sizing worth 32.7% at a 100% cache hit rate, mediated by an adaptive hash index MySQL's default sizing makes net-harmful</li>
+                        <li>Two concurrency defects reproduced and fixed: a lost-update race under <code>REPEATABLE READ</code>, and a shared connection that segfaulted the interpreter under concurrent readers</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
-                        <strong>Tech:</strong> Python, MySQL, SQL, Streamlit, ETL, Plotly
+                        <strong>Tech:</strong> Python, MySQL 8, SQL, Streamlit, ETL, pandas
                     </p>
                     <div class="project-links">
                         <a href="https://github.com/Nishant8677/Government-Budget-Analytics-Platform" target="_blank">View on GitHub →</a>
@@ -271,21 +274,21 @@
                 <div class="project-content">
                     <div class="project-tags">
                         <span class="tag">Computer Vision</span>
-                        <span class="tag">Deep Learning</span>
+                        <span class="tag">Evaluation</span>
                     </div>
                     <h3>FocusLens – Real-Time Focus Monitoring</h3>
-                    <p class="subtitle">Extracted 478 facial landmarks per frame for real-time focus inference with zero dropped frames.</p>
+                    <p class="subtitle">A real-time CV pipeline, and a published null result about its own evaluation.</p>
                     <p class="case-study" style="background: rgba(255,255,255,0.03); padding: 1rem; border-left: 3px solid var(--accent); margin: 1rem 0; font-size: 0.9rem; color: var(--text-secondary);">
-                        <strong>Case Study:</strong> Designed a resilient real-time processing pipeline to handle 54.17 FPS video streams without dropping frames. For the ML layer, combined a robust feature extractor (EAR, PERCLOS) with a Random Forest + LSTM temporal model to accurately classify sustained focus states.
+                        <strong>Case Study:</strong> The supervised model scored 97.67% accuracy — which turned out to be <em>exactly</em> the majority-class baseline. 84 of 86 scored windows, and the confusion matrix showed it never predicted "fatigued" once: it had learned a constant. The cause was 2 negatives across the labelled set and no train/test split. The bottleneck was the labelling protocol, not the feature set, so that is what I published.
                     </p>
                     <ul>
-                        <li>97.67% accuracy, 98.82% F1, and 100% recall on held-out evaluation data</li>
-                        <li>78.28 ms end-to-end prediction latency (2.65 ms feature extraction latency)</li>
-                        <li>54.17 FPS face-detection throughput with zero dropped frames</li>
-                        <li>Random Forest and LSTM temporal models</li>
+                        <li>478 MediaPipe facial landmarks per frame at 54.17 FPS face-detection throughput</li>
+                        <li>2.65 ms feature extraction for EAR, PERCLOS, blink rate and head pose</li>
+                        <li>27 labelled sessions collected to validate the model against self-reported focus</li>
+                        <li>Null result published rather than the 97.67% headline — a constant classifier scores the same</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
-                        <strong>Tech:</strong> Python, MediaPipe, Random Forest, LSTM, Streamlit
+                        <strong>Tech:</strong> Python, MediaPipe, Scikit-learn, Streamlit
                     </p>
                     <div class="project-links">
                         <a href="https://github.com/Nishant8677/Focus_Lens" target="_blank">View on GitHub →</a>
@@ -303,16 +306,17 @@
                     <h3>Fake News Detection API (BERT)</h3>
                     <p class="subtitle">Fine-tuned BERT on the LIAR dataset for real-world fake news classification.</p>
                     <p class="case-study" style="background: rgba(255,255,255,0.03); padding: 1rem; border-left: 3px solid var(--accent); margin: 1rem 0; font-size: 0.9rem; color: var(--text-secondary);">
-                        <strong>Case Study:</strong> Engineered a containerized FastAPI microservice with a 418 MB memory footprint to ensure scalable, low-latency (8.5 ms avg) inference. The AI model leverages a fine-tuned BERT transformer to accurately classify nuanced claims across 6 distinct categories on the LIAR dataset.
+                        <strong>Case Study:</strong> The classifier reaches 25.7% on 6-class LIAR against a 16.7% chance floor — a dataset-limited ceiling, so this project is about the serving engineering and the accuracy is stated up front rather than omitted. Exporting to ONNX and quantising to int8 produced the more interesting result: int8 was 2.7× faster and I rejected it anyway.
                     </p>
                     <ul>
-                        <li>FastAPI REST service for 6-class claim classification</li>
-                        <li>8.5 ms avg / 12.8 ms P95 latency with 396 req/sec throughput</li>
+                        <li>FastAPI REST service for 6-class claim classification, containerized and verified healthy end-to-end</li>
+                        <li>8.5 ms avg / 12.8 ms P95 latency with 396 req/sec batch throughput</li>
                         <li>0.67 s model load time with a 418 MB memory footprint</li>
-                        <li>Containerized end-to-end ML pipeline for training and inference</li>
+                        <li>25.7% accuracy against a 16.7% chance floor — stated up front, not buried</li>
+                        <li>ONNX + int8 measured on a separate model-level harness: kept fp32 (predictions identical on all 1,267 test rows), rejected int8 despite 2.7× lower P95 — McNemar p=0.38 left the drop insignificant, but only 57% of predictions matched, so equivalence could not be shown</li>
                     </ul>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
-                        <strong>Tech:</strong> Docker, FastAPI, HuggingFace, BERT
+                        <strong>Tech:</strong> Docker, FastAPI, HuggingFace, BERT, ONNX Runtime
                     </p>
                     <div class="project-links">
                         <a href="https://fake-news-detection-api-ktb2chsjvps7cqgsmknbcn.streamlit.app/" target="_blank" rel="noopener">Live demo →</a>
